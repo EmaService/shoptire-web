@@ -304,6 +304,113 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════════════
+          VISÍTANOS
+      ══════════════════════════════════════════════════ */}
+      <section className="py-24 max-w-6xl mx-auto px-4">
+        <div className="mb-16">
+          <p className="text-[#FF6B35] text-xs font-bold uppercase tracking-[0.25em] mb-3">Encuéntranos</p>
+          <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-white">Visítanos en CDMX</h2>
+          <span className="accent-line mt-4" />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+          {/* Tienda principal */}
+          <div className="bg-[#111] border border-[#1f1f1f] card-dark rounded-2xl p-7 space-y-5">
+            <div className="flex items-center gap-3">
+              <span className="text-3xl">🏪</span>
+              <div>
+                <p className="font-heading font-bold text-white text-lg">Tienda Principal</p>
+                <p className="text-xs text-[#FF6B35] uppercase tracking-wider">Llantas · Instalación</p>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <div className="flex items-start gap-3">
+                <span className="text-gray-500 mt-0.5">📍</span>
+                <div>
+                  <p className="text-sm font-semibold text-gray-200">Huehuetan 286 esq. Tekal</p>
+                  <p className="text-sm text-gray-400">Héroes de Padierna, CP 14200, CDMX</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-gray-500 mt-0.5">🕘</span>
+                <div>
+                  <p className="text-sm text-gray-300"><span className="font-semibold text-white">Lun–Sáb</span> 9:00am – 6:00pm</p>
+                  <p className="text-sm text-gray-400">Recogidas con cita: Lun–Vie hasta 9:00pm</p>
+                  <p className="text-sm text-gray-500">Domingo cerrado</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-gray-500 mt-0.5">📞</span>
+                <p className="text-sm text-gray-300">
+                  <a href="tel:5570601568" className="hover:text-white transition-colors">55 7060 1568</a>
+                </p>
+              </div>
+            </div>
+
+            <a
+              href="https://maps.app.goo.gl/Spvq6o1iNMJQrKLH6"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 w-full border border-[#FF6B35]/40 text-[#FF6B35] hover:bg-[#FF6B35]/10 py-3 rounded-xl font-semibold text-sm transition-colors"
+            >
+              🗺️ Ver en Google Maps
+            </a>
+          </div>
+
+          {/* Taller */}
+          <div className="bg-[#111] border border-[#1f1f1f] card-dark rounded-2xl p-7 space-y-5">
+            <div className="flex items-center gap-3">
+              <span className="text-3xl">🔧</span>
+              <div>
+                <p className="font-heading font-bold text-white text-lg">Taller Mecánico</p>
+                <p className="text-xs text-[#FF6B35] uppercase tracking-wider">Alineación · Suspensión</p>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <div className="flex items-start gap-3">
+                <span className="text-gray-500 mt-0.5">📍</span>
+                <div>
+                  <p className="text-sm font-semibold text-gray-200">Tekal 85</p>
+                  <p className="text-sm text-gray-400">Tlalpan, CDMX</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-gray-500 mt-0.5">🕘</span>
+                <div>
+                  <p className="text-sm text-gray-300"><span className="font-semibold text-white">Lun–Sáb</span> 9:00am – 6:00pm</p>
+                  <p className="text-sm text-gray-400">Sin cita — llega directo</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Servicios taller */}
+            <div className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl p-4">
+              <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Servicios</p>
+              <div className="grid grid-cols-2 gap-2">
+                {[
+                  { s: 'Alineación 4 planos', price: '$1,000' },
+                  { s: 'Balanceo', price: 'GRATIS*' },
+                  { s: 'Rótulas y bieletas', price: 'En taller' },
+                  { s: 'Amortiguadores', price: 'En taller' },
+                  { s: 'Terminales', price: 'En taller' },
+                  { s: 'Rines', price: 'Ver en tienda' },
+                ].map(item => (
+                  <div key={item.s} className="flex flex-col">
+                    <span className="text-xs text-gray-300">{item.s}</span>
+                    <span className={`text-[10px] font-bold ${item.price.includes('GRATIS') ? 'text-[#FF6B35]' : 'text-gray-500'}`}>{item.price}</span>
+                  </div>
+                ))}
+              </div>
+              <p className="text-[10px] text-gray-600 mt-3">* Balanceo gratis con compra de llantas</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════
           CTA WHATSAPP
       ══════════════════════════════════════════════════ */}
       <section className="bg-[#111] border-t border-[#1f1f1f] py-20 px-4 text-center">
