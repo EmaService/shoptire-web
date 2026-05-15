@@ -19,18 +19,18 @@ type Resultado =
   | { tipo: 'proveedor'; pedido_id: number; anticipo: number; transferencia: { clabe: string; banco: string; titular: string; concepto: string; whatsapp: string } };
 
 export default function ComprarForm({ llanta }: Props) {
-  const [nombre,   setNombre]   = useState('');
-  const [telefono, setTelefono] = useState('');
-  const [cantidad, setCantidad] = useState(1);
-  const [loading,  setLoading]  = useState(false);
-  const [error,    setError]    = useState('');
+  const [nombre,    setNombre]    = useState('');
+  const [telefono,  setTelefono]  = useState('');
+  const [cantidad,  setCantidad]  = useState(1);
+  const [loading,   setLoading]   = useState(false);
+  const [error,     setError]     = useState('');
   const [resultado, setResultado] = useState<Resultado | null>(null);
-  const [copiado,  setCopiado]  = useState(false);
+  const [copiado,   setCopiado]   = useState(false);
 
-  const precio    = parseFloat(String(llanta.precio));
-  const total     = precio * cantidad;
-  const totalFmt  = total.toLocaleString('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 });
-  const esT       = llanta.tabla_origen.toUpperCase() === 'T';
+  const precio   = parseFloat(String(llanta.precio));
+  const total    = precio * cantidad;
+  const totalFmt = total.toLocaleString('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 });
+  const esT      = llanta.tabla_origen.toUpperCase() === 'T';
 
   const copiar = (txt: string) => {
     navigator.clipboard.writeText(txt).then(() => {
@@ -42,9 +42,8 @@ export default function ComprarForm({ llanta }: Props) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-    if (!nombre.trim())          return setError('Ingresa tu nombre completo.');
+    if (!nombre.trim()) return setError('Ingresa tu nombre completo.');
     if (!/\d{8,}/.test(telefono.replace(/\D/g, ''))) return setError('Ingresa un número de teléfono válido (10 dígitos).');
-
     setLoading(true);
     try {
       const res = await fetch('/api/pedido-web', {
@@ -70,15 +69,15 @@ export default function ComprarForm({ llanta }: Props) {
   /* ── Confirmación tienda ── */
   if (resultado?.tipo === 'tienda') {
     return (
-      <div className="text-center space-y-4 py-4">
-        <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto">
-          <CheckCircle2 className="w-9 h-9 text-emerald-600" />
+      <div className="text-center space-y-5 py-2">
+        <div className="w-16 h-16 bg-emerald-500/15 rounded-full flex items-center justify-center mx-auto">
+          <CheckCircle2 className="w-9 h-9 text-emerald-400" />
         </div>
-        <h3 className="font-heading text-xl font-bold text-[#0A0A0A]">¡Pedido registrado!</h3>
-        <p className="text-gray-600 text-sm leading-relaxed">
-          Pedido <strong>#{resultado.pedido_id}</strong> recibido. Estamos verificando disponibilidad en bodega.
+        <h3 className="font-heading text-xl font-bold text-white">¡Pedido registrado!</h3>
+        <p className="text-gray-400 text-sm leading-relaxed">
+          Pedido <strong className="text-white">#{resultado.pedido_id}</strong> recibido. Verificando disponibilidad en bodega.
           <br /><br />
-          Te avisamos por WhatsApp al <strong>{telefono}</strong> en breve.
+          Te avisamos por WhatsApp al <strong className="text-white">{telefono}</strong>.
         </p>
         <a
           href={`https://wa.me/5215512899120?text=${encodeURIComponent(`Hola, acabo de registrar el pedido #${resultado.pedido_id} en la web para ${llanta.modelo} ${llanta.medida}`)}`}
@@ -101,38 +100,37 @@ export default function ComprarForm({ llanta }: Props) {
     return (
       <div className="space-y-4">
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center shrink-0">
-            <CheckCircle2 className="w-7 h-7 text-blue-600" />
+          <div className="w-11 h-11 bg-blue-500/15 rounded-full flex items-center justify-center shrink-0">
+            <CheckCircle2 className="w-6 h-6 text-blue-400" />
           </div>
           <div>
-            <h3 className="font-heading text-lg font-bold text-[#0A0A0A]">Pedido #{resultado.pedido_id} registrado</h3>
-            <p className="text-xs text-gray-500">Para confirmar, realiza el anticipo</p>
+            <h3 className="font-heading text-base font-bold text-white">Pedido #{resultado.pedido_id} registrado</h3>
+            <p className="text-xs text-gray-500">Realiza el anticipo para confirmar</p>
           </div>
         </div>
 
-        <div className="bg-[#F4F6F8] rounded-2xl p-4 space-y-3">
-          <p className="text-sm font-semibold text-[#2C3E50]">Datos para transferencia</p>
-
+        <div className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl p-4 space-y-2">
+          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Datos de transferencia</p>
           {[
-            { label: 'Banco',    value: t.banco },
-            { label: 'CLABE',    value: t.clabe,   copy: true },
+            { label: 'Banco',      value: t.banco },
+            { label: 'CLABE',      value: t.clabe,    copy: true },
             { label: 'A nombre de', value: t.titular },
-            { label: 'Concepto', value: t.concepto, copy: true },
-            { label: 'Anticipo', value: anticipoFmt },
+            { label: 'Concepto',   value: t.concepto, copy: true },
+            { label: 'Anticipo',   value: anticipoFmt },
           ].map(row => (
-            <div key={row.label} className="flex items-center justify-between gap-2 bg-white rounded-xl px-3 py-2.5">
+            <div key={row.label} className="flex items-center justify-between gap-2 bg-[#222] rounded-lg px-3 py-2.5">
               <div>
-                <p className="text-xs text-gray-400">{row.label}</p>
-                <p className="text-sm font-semibold text-[#0A0A0A] font-mono">{row.value}</p>
+                <p className="text-[10px] text-gray-500 uppercase tracking-wider">{row.label}</p>
+                <p className="text-sm font-semibold text-gray-200 font-mono">{row.value}</p>
               </div>
               {row.copy && (
                 <button
                   type="button"
                   onClick={() => copiar(row.value)}
-                  className="text-[#FF6B35] hover:text-orange-700 transition-colors"
+                  className="text-[#FF6B35] hover:text-orange-300 transition-colors shrink-0"
                   title="Copiar"
                 >
-                  {copiado ? <CheckCircle2 className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
+                  {copiado ? <CheckCircle2 className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
                 </button>
               )}
             </div>
@@ -140,8 +138,8 @@ export default function ComprarForm({ llanta }: Props) {
         </div>
 
         <p className="text-xs text-gray-500 text-center leading-relaxed">
-          Cuando realices el depósito, envía tu comprobante por WhatsApp al{' '}
-          <strong>{t.whatsapp.replace('521', '+52 1 ')}</strong>{' '}
+          Envía tu comprobante por WhatsApp al{' '}
+          <strong className="text-gray-300">{t.whatsapp.replace('521', '+52 1 ')}</strong>{' '}
           indicando el número de pedido.
         </p>
 
@@ -161,10 +159,11 @@ export default function ComprarForm({ llanta }: Props) {
 
   /* ── Formulario ── */
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-5">
+
       {/* Cantidad */}
       <div>
-        <label className="block text-sm font-semibold text-[#0A0A0A] mb-2">Cantidad</label>
+        <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Cantidad</label>
         <div className="flex gap-2">
           {[1, 2, 3, 4].map(n => (
             <button
@@ -173,8 +172,8 @@ export default function ComprarForm({ llanta }: Props) {
               onClick={() => setCantidad(n)}
               className={`w-12 h-12 rounded-xl font-bold text-lg transition-all ${
                 cantidad === n
-                  ? 'bg-[#FF6B35] text-white shadow-md scale-105'
-                  : 'bg-[#F4F6F8] text-gray-600 hover:bg-gray-200'
+                  ? 'bg-[#FF6B35] text-white shadow-lg shadow-orange-900/30 scale-105'
+                  : 'bg-[#222] text-gray-400 hover:bg-[#2a2a2a] border border-[#333]'
               }`}
             >
               {n}
@@ -185,7 +184,7 @@ export default function ComprarForm({ llanta }: Props) {
 
       {/* Nombre */}
       <div>
-        <label className="block text-sm font-semibold text-[#0A0A0A] mb-1">
+        <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
           Nombre completo <span className="text-[#FF6B35]">*</span>
         </label>
         <input
@@ -193,13 +192,13 @@ export default function ComprarForm({ llanta }: Props) {
           value={nombre}
           onChange={e => setNombre(e.target.value)}
           placeholder="Ej: Juan García"
-          className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-[#FF6B35] focus:outline-none transition-colors"
+          className="input-dark w-full rounded-xl px-4 py-3"
         />
       </div>
 
       {/* Teléfono */}
       <div>
-        <label className="block text-sm font-semibold text-[#0A0A0A] mb-1">
+        <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
           Teléfono WhatsApp <span className="text-[#FF6B35]">*</span>
         </label>
         <input
@@ -207,25 +206,27 @@ export default function ComprarForm({ llanta }: Props) {
           value={telefono}
           onChange={e => setTelefono(e.target.value)}
           placeholder="55 1234 5678"
-          className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-[#FF6B35] focus:outline-none transition-colors"
+          className="input-dark w-full rounded-xl px-4 py-3"
         />
-        <p className="text-xs text-gray-400 mt-1">
-          {esT ? 'Te avisamos por WhatsApp cuando confirmemos disponibilidad.' : 'Te enviamos el seguimiento del pedido.'}
+        <p className="text-xs text-gray-600 mt-1.5">
+          {esT ? 'Te avisamos cuando confirmemos disponibilidad.' : 'Te enviamos el seguimiento del pedido.'}
         </p>
       </div>
 
       {/* Error */}
       {error && (
-        <div className="bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3 rounded-xl">
+        <div className="bg-red-500/10 border border-red-500/30 text-red-400 text-sm px-4 py-3 rounded-xl">
           {error}
         </div>
       )}
 
       {/* Resumen + botón */}
-      <div className="bg-[#F4F6F8] rounded-2xl p-4 space-y-3">
+      <div className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl p-4 space-y-3">
         <div className="flex justify-between text-sm">
-          <span className="text-gray-500">{cantidad} {cantidad > 1 ? 'llantas' : 'llanta'} × {precio.toLocaleString('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 })}</span>
-          <span className="font-bold text-[#0A0A0A]">{totalFmt}</span>
+          <span className="text-gray-500">
+            {cantidad} {cantidad > 1 ? 'llantas' : 'llanta'} × {precio.toLocaleString('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 })}
+          </span>
+          <span className="font-bold text-white">{totalFmt}</span>
         </div>
         {!esT && (
           <div className="flex justify-between text-sm">
@@ -238,18 +239,18 @@ export default function ComprarForm({ llanta }: Props) {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-[#FF6B35] hover:bg-orange-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-heading font-bold py-4 rounded-xl flex items-center justify-center gap-2 text-lg transition-colors shadow-sm"
+          className="w-full bg-[#FF6B35] hover:bg-orange-500 disabled:bg-[#333] disabled:text-gray-600 disabled:cursor-not-allowed text-white font-heading font-bold py-4 rounded-xl flex items-center justify-center gap-2 text-base transition-colors shadow-lg shadow-orange-900/20"
         >
           {loading ? (
             <><Loader2 className="w-5 h-5 animate-spin" /> Registrando...</>
           ) : esT ? (
             <>🏪 Confirmar disponibilidad</>
           ) : (
-            <>📦 Apartar llanta — {Math.ceil(total * 0.10).toLocaleString('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 })}</>
+            <>📦 Apartar — {Math.ceil(total * 0.10).toLocaleString('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 })}</>
           )}
         </button>
-        <p className="text-xs text-center text-gray-400">
-          {esT ? '⚡ Sin pago adelantado — confirmamos disponibilidad antes' : '🔒 El resto lo pagas al recoger la llanta'}
+        <p className="text-[11px] text-center text-gray-600">
+          {esT ? '⚡ Sin pago adelantado — confirmamos disponibilidad antes' : '🔒 El resto lo pagas al recoger'}
         </p>
       </div>
     </form>
