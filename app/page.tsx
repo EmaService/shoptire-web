@@ -41,7 +41,11 @@ async function fetchMedidas(): Promise<string[]> {
   try {
     const r = await fetch(`${BACKEND}/web/medidas`, { cache: 'no-store' });
     const data = await r.json();
-    return Array.isArray(data.medidas) ? data.medidas : [];
+    const all: unknown[] = Array.isArray(data.medidas) ? data.medidas : [];
+    // Solo medidas estándar de auto: 185/65 R15
+    return all.filter(
+      (m): m is string => typeof m === 'string' && /^\d{3}\/\d{2,3}\s*R\d{2}$/i.test(m.trim())
+    );
   } catch {
     return [];
   }

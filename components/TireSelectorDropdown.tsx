@@ -61,13 +61,21 @@ function SelectField({ label, unit, value, onChange, options, placeholder, disab
 }
 
 interface Props {
-  medidas: string[];
+  medidas?: string[];
 }
 
-export default function TireSelectorDropdown({ medidas }: Props) {
+export default function TireSelectorDropdown({ medidas = [] }: Props) {
   const router = useRouter();
 
-  const allParsed = medidas.map(parseMedida).filter(Boolean) as Parsed[];
+  const allParsed: Parsed[] = [];
+  try {
+    for (const m of medidas) {
+      const p = parseMedida(m);
+      if (p) allParsed.push(p);
+    }
+  } catch {
+    // si algo falla, allParsed queda vacío → fallback al catálogo
+  }
 
   const [ancho, setAncho] = useState('');
   const [perfil, setPerfil] = useState('');
