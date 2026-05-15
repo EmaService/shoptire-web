@@ -24,8 +24,8 @@ interface SelectFieldProps {
 function SelectField({ label, unit, value, onChange, options, placeholder, disabled }: SelectFieldProps) {
   return (
     <div className="flex-1 min-w-0">
-      <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1.5 pl-1">
-        {label} <span className="text-gray-700 normal-case font-normal">{unit}</span>
+      <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-2 pl-1">
+        {label} <span className="text-gray-600 normal-case font-normal text-[10px]">{unit}</span>
       </p>
       <div className="relative">
         <select
@@ -33,26 +33,27 @@ function SelectField({ label, unit, value, onChange, options, placeholder, disab
           onChange={e => onChange(e.target.value)}
           disabled={disabled}
           className={`
-            w-full rounded-xl px-4 py-3.5 text-xl font-mono font-bold appearance-none pr-10
-            bg-[#111] border-2 text-white transition-all
-            disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer
-            ${value
-              ? 'border-[#FF6B35] text-white'
-              : 'border-[#2a2a2a] text-gray-400'
+            w-full rounded-xl px-4 py-3.5 text-xl font-mono font-bold appearance-none pr-9
+            border-2 transition-all cursor-pointer
+            focus:outline-none
+            ${disabled
+              ? 'bg-[#161616] border-[#252525] text-gray-700 cursor-not-allowed'
+              : value
+                ? 'bg-[#1c1008] border-[#FF6B35] text-white'
+                : 'bg-[#1a1a1a] border-[#444] text-gray-200 hover:border-[#666]'
             }
-            focus:outline-none focus:border-[#FF6B35]
           `}
         >
-          <option value="" className="text-gray-600">{placeholder}</option>
+          <option value="" className="bg-[#1a1a1a] text-gray-400">{placeholder}</option>
           {options.map(o => (
-            <option key={o} value={o} className="text-white bg-[#111]">
+            <option key={o} value={o} className="bg-[#1a1a1a] text-white">
               {o}
             </option>
           ))}
         </select>
         <ChevronDown
-          className={`absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none transition-colors ${
-            value ? 'text-[#FF6B35]' : 'text-gray-600'
+          className={`absolute right-2.5 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none transition-colors ${
+            disabled ? 'text-gray-700' : value ? 'text-[#FF6B35]' : 'text-gray-400'
           }`}
         />
       </div>
@@ -119,11 +120,11 @@ export default function TireSelectorDropdown({ medidas = [] }: Props) {
           value={ancho}
           onChange={handleAncho}
           options={anchos}
-          placeholder="—"
+          placeholder="Ej: 205"
           disabled={false}
         />
 
-        <div className="text-2xl font-bold text-gray-700 pb-3.5 shrink-0">/</div>
+        <div className="text-2xl font-extrabold text-gray-400 pb-3.5 shrink-0 select-none">/</div>
 
         <SelectField
           label="Perfil"
@@ -131,11 +132,11 @@ export default function TireSelectorDropdown({ medidas = [] }: Props) {
           value={perfil}
           onChange={handlePerfil}
           options={perfiles}
-          placeholder="—"
+          placeholder={ancho ? 'Elige' : '—'}
           disabled={!ancho}
         />
 
-        <div className="text-lg font-bold text-gray-700 pb-3.5 shrink-0 font-mono">R</div>
+        <div className="text-base font-extrabold text-gray-400 pb-3.5 shrink-0 font-mono select-none">R</div>
 
         <SelectField
           label="Rin"
@@ -143,7 +144,7 @@ export default function TireSelectorDropdown({ medidas = [] }: Props) {
           value={rin}
           onChange={setRin}
           options={rines}
-          placeholder="—"
+          placeholder={perfil ? 'Elige' : '—'}
           disabled={!perfil}
         />
 
