@@ -92,6 +92,17 @@ export default function HomePage() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 w-full py-28 sm:py-36">
           <div className="max-w-3xl">
 
+            {/* Rating Google */}
+            <a
+              href="https://maps.app.goo.gl/Spvq6o1iNMJQrKLH6"
+              target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-white/8 hover:bg-white/12 border border-white/10 px-4 py-2 rounded-full mb-8 transition-colors group"
+            >
+              <span className="flex text-yellow-400 text-sm">★★★★★</span>
+              <span className="text-white font-bold text-sm">4.6</span>
+              <span className="text-gray-400 text-xs">· 983 reseñas en Google</span>
+            </a>
+
             {/* Branding — ShopTire Ajusco */}
             <div className="flex items-center gap-4 mb-10">
               <Image
@@ -347,6 +358,13 @@ export default function HomePage() {
                   <a href="tel:5570601568" className="hover:text-white transition-colors">55 7060 1568</a>
                 </p>
               </div>
+            </div>
+
+            {/* Rating */}
+            <div className="flex items-center gap-2 bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl px-4 py-3">
+              <span className="text-yellow-400 tracking-tight">★★★★★</span>
+              <span className="font-bold text-white text-sm">4.6</span>
+              <span className="text-gray-500 text-xs">· 983 reseñas en Google</span>
             </div>
 
             <a
