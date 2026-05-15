@@ -36,7 +36,20 @@ const SPEED_LINES = [
   { top: '82%', width: '46%', dur: '3.8s',  delay: '0.9s' },
 ];
 
-export default function HomePage() {
+async function fetchMedidas(): Promise<string[]> {
+  const BACKEND = process.env.BACKEND_URL || 'http://3.236.101.20:3000';
+  try {
+    const r = await fetch(`${BACKEND}/web/medidas`, { cache: 'no-store' });
+    const data = await r.json();
+    return Array.isArray(data.medidas) ? data.medidas : [];
+  } catch {
+    return [];
+  }
+}
+
+export default async function HomePage() {
+  const medidas = await fetchMedidas();
+
   return (
     <main className="bg-[#0A0A0A]">
 
@@ -139,7 +152,7 @@ export default function HomePage() {
               <p className="text-xs text-gray-500 mb-4 uppercase tracking-wider">
                 Selecciona tu medida — la encuentras en el flanco de la llanta
               </p>
-              <TireSelectorDropdown />
+              <TireSelectorDropdown medidas={medidas} />
             </div>
           </div>
         </div>
