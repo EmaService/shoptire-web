@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/react';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -44,6 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <p>ShopTire Ajusco · Periférico Sur · CDMX</p>
           <p className="mt-1">© {new Date().getFullYear()} Todos los derechos reservados</p>
         </footer>
+        <Analytics />
       </body>
     </html>
   );

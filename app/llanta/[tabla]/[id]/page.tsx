@@ -69,6 +69,26 @@ export default async function LlantaDetallePage({ params }: { params: { tabla: s
 
   return (
     <main className="max-w-4xl mx-auto px-4 py-6">
+      {/* Struct data — Google Product */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Product',
+            name: `${marca} ${llanta.modelo} ${llanta.medida}`,
+            description: `Llanta ${llanta.medida} ${llanta.modelo}. Disponible en ShopTire Ajusco, CDMX.`,
+            brand: { '@type': 'Brand', name: marca },
+            offers: {
+              '@type': 'Offer',
+              priceCurrency: 'MXN',
+              price: llanta.precio,
+              availability: 'https://schema.org/InStock',
+              seller: { '@type': 'LocalBusiness', name: 'ShopTire Ajusco' },
+            },
+          }),
+        }}
+      />
       {/* Breadcrumb / back */}
       <a href="javascript:history.back()"
         className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-800 mb-6 transition-colors">
