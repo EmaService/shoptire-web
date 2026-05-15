@@ -11,7 +11,7 @@ const STATS = [
   { num: '+10,000', label: 'referencias' },
   { num: 'Hoy',    label: 'entrega en CDMX' },
   { num: '100%',   label: 'instalación gratis' },
-  { num: '+4 años', label: 'en el mercado' },
+  { num: '+10 años', label: 'en el mercado' },
 ];
 
 const PERKS = [
