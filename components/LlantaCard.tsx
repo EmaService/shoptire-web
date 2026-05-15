@@ -48,9 +48,14 @@ export default function LlantaCard({ llanta }: Props) {
 
       {/* Medida + Precio */}
       <div className="flex items-end justify-between mt-auto">
-        <span className="font-mono text-sm font-medium text-[#2C3E50] bg-[#F4F6F8] px-2.5 py-1 rounded-lg">
-          {llanta.medida}
-        </span>
+        <div className="flex flex-col gap-1">
+          <span className="font-mono text-sm font-medium text-[#2C3E50] bg-[#F4F6F8] px-2.5 py-1 rounded-lg">
+            {llanta.medida}
+          </span>
+          <span className="font-mono text-[10px] text-gray-400 px-1">
+            Cód: {llanta.tabla_origen}-{llanta.id}
+          </span>
+        </div>
         <span className="font-heading text-2xl font-extrabold text-[#0A0A0A]">
           {precioFmt}
         </span>

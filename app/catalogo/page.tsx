@@ -44,8 +44,9 @@ export default async function CatalogoPage({ searchParams }: PageProps) {
 
   const grupos = [
     { label: 'En tienda — disponible hoy', dias: 0, items: llantas.filter(l => l.entrega_dias === 0) },
-    { label: 'Entrega hoy', dias: 1, items: llantas.filter(l => l.entrega_dias === 1) },
-    { label: '2 días hábiles', dias: 2, items: llantas.filter(l => l.entrega_dias === 2) },
+    { label: 'Llega hoy (~4 hrs)', dias: 1, items: llantas.filter(l => l.entrega_dias === 1) },
+    { label: 'Llega hoy (~12 hrs)', dias: 2, items: llantas.filter(l => l.entrega_dias === 2) },
+    { label: '2 días hábiles', dias: 3, items: llantas.filter(l => l.entrega_dias === 3) },
   ].filter(g => g.items.length > 0);
 
   return (
@@ -92,7 +93,7 @@ export default async function CatalogoPage({ searchParams }: PageProps) {
       {grupos.map(grupo => (
         <section key={grupo.dias} className="mb-10">
           <h2 className="text-base font-semibold text-gray-700 mb-4 flex items-center gap-2">
-            <span className={`w-2.5 h-2.5 rounded-full ${grupo.dias === 0 ? 'bg-green-500' : grupo.dias === 1 ? 'bg-blue-500' : 'bg-gray-400'}`} />
+            <span className={`w-2.5 h-2.5 rounded-full ${grupo.dias === 0 ? 'bg-emerald-500' : grupo.dias === 1 ? 'bg-blue-500' : grupo.dias === 2 ? 'bg-sky-400' : 'bg-gray-400'}`} />
             {grupo.label}
             <span className="text-gray-400 font-normal">({grupo.items.length})</span>
           </h2>
@@ -113,7 +114,7 @@ export default async function CatalogoPage({ searchParams }: PageProps) {
               href={`/catalogo?medida=${encodeURIComponent(medida)}&page=${p}`}
               className={`w-9 h-9 rounded-lg flex items-center justify-center text-sm font-medium transition-colors ${
                 String(p) === page
-                  ? 'bg-red-500 text-white'
+                  ? 'bg-[#FF6B35] text-white'
                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
               }`}
             >
