@@ -6,9 +6,10 @@ import { Search } from 'lucide-react';
 interface Props {
   defaultValue?: string;
   autoFocus?: boolean;
+  variant?: 'dark' | 'light';
 }
 
-export default function SearchBar({ defaultValue = '', autoFocus = false }: Props) {
+export default function SearchBar({ defaultValue = '', autoFocus = false, variant = 'dark' }: Props) {
   const [value, setValue] = useState(defaultValue);
   const router = useRouter();
 
@@ -19,6 +20,10 @@ export default function SearchBar({ defaultValue = '', autoFocus = false }: Prop
     router.push(`/catalogo?medida=${encodeURIComponent(q)}`);
   };
 
+  const inputClass = variant === 'dark'
+    ? 'input-dark flex-1 rounded-xl px-4 py-3.5 text-lg font-mono'
+    : 'flex-1 rounded-xl border-2 border-gray-200 px-4 py-3.5 text-lg focus:border-[#FF6B35] focus:outline-none bg-white text-black';
+
   return (
     <form onSubmit={handleSubmit} className="flex gap-2 w-full max-w-xl">
       <input
@@ -27,11 +32,11 @@ export default function SearchBar({ defaultValue = '', autoFocus = false }: Prop
         onChange={e => setValue(e.target.value)}
         autoFocus={autoFocus}
         placeholder="Ej: 205/60 R16"
-        className="flex-1 rounded-xl border-2 border-gray-200 px-4 py-3 text-lg focus:border-red-400 focus:outline-none shadow-sm"
+        className={inputClass}
       />
       <button
         type="submit"
-        className="bg-red-500 hover:bg-red-600 text-white px-5 py-3 rounded-xl font-semibold flex items-center gap-2 shadow-sm transition-colors"
+        className="bg-[#FF6B35] hover:bg-orange-500 text-white px-5 py-3.5 rounded-xl font-bold flex items-center gap-2 transition-colors orange-pulse"
       >
         <Search className="w-5 h-5" />
         <span className="hidden sm:inline">Buscar</span>

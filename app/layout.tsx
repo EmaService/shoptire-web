@@ -51,7 +51,7 @@ const WA_ICON = (
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" className={`${montserrat.variable} ${inter.variable} ${robotoMono.variable}`}>
-      <body className="font-body bg-white text-brand-black">
+      <body className="font-body bg-[#0A0A0A] text-white">
 
         {/* ── Header ── */}
         <header className="bg-brand-black text-white sticky top-0 z-50 shadow-lg">
@@ -94,22 +94,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
 
         {/* ── Footer ── */}
-        <footer className="bg-brand-black text-gray-500 text-xs mt-20">
-          <div className="max-w-7xl mx-auto px-4 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <footer className="bg-[#0d0d0d] border-t border-[#1f1f1f] text-xs">
+          <div className="max-w-7xl mx-auto px-4 py-10 flex flex-col sm:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-3">
-              <Image src="/logo.svg" alt="ShopTire" width={32} height={32} className="rounded-full bg-white p-0.5 opacity-80" />
+              <Image src="/logo.svg" alt="ShopTire" width={36} height={36} className="rounded-full bg-white p-0.5" />
               <div>
-                <p className="text-white font-semibold text-sm">ShopTire Ajusco</p>
-                <p className="text-gray-500">Periférico Sur · CDMX</p>
+                <p className="text-white font-heading font-bold text-sm">ShopTire <span className="text-[#FF6B35]">Ajusco</span></p>
+                <p className="text-gray-600 mt-0.5">Llantas · CDMX · Desde 2020</p>
               </div>
             </div>
-            <div className="text-center sm:text-right">
+            <div className="text-center sm:text-right text-gray-600">
               <p>© {new Date().getFullYear()} ShopTire Ajusco. Todos los derechos reservados.</p>
-              <p className="mt-0.5">
+              <p className="mt-1">
                 ¿Preguntas?{' '}
                 <a href="https://wa.me/5215512899120" target="_blank" rel="noopener noreferrer"
-                  className="text-[#25D366] hover:underline">
-                  Escríbenos al WhatsApp
+                  className="text-[#25D366] hover:underline font-medium">
+                  WhatsApp con Yoko
                 </a>
               </p>
             </div>
