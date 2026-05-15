@@ -27,13 +27,115 @@ h1, h2, h3, h4 {
 ::-webkit-scrollbar-track { background: #111; }
 ::-webkit-scrollbar-thumb { background: #FF6B35; border-radius: 3px; }
 
-/* Focus ring naranja */
-*:focus-visible {
-  outline: 2px solid #FF6B35;
-  outline-offset: 2px;
+/* Focus */
+*:focus-visible { outline: 2px solid #FF6B35; outline-offset: 2px; }
+
+/* ─── RACING STRIPES ───────────────────────────────────────────────────────── */
+/* Dos rayas paralelas estilo Mustang GT500 / Shelby LeMans stripes           */
+@keyframes stripe-pulse {
+  0%, 100% { opacity: 0.10; }
+  50%       { opacity: 0.30; }
+}
+@keyframes stripe-slide {
+  0%   { background-position: 0% 0%; }
+  100% { background-position: 0% 200%; }
 }
 
-/* Orange glow card hover */
+.racing-stripe {
+  position: absolute;
+  top: -5%;
+  width: 4px;
+  height: 110%;
+  background: linear-gradient(
+    to bottom,
+    transparent     0%,
+    rgba(255,107,53,0.0) 5%,
+    rgba(255,107,53,0.9) 20%,
+    rgba(255,255,255,0.7) 50%,
+    rgba(255,107,53,0.9) 80%,
+    rgba(255,107,53,0.0) 95%,
+    transparent     100%
+  );
+  background-size: 100% 200%;
+  transform: skewX(-8deg);
+  animation: stripe-pulse 4s ease-in-out infinite, stripe-slide 6s linear infinite;
+  pointer-events: none;
+}
+.racing-stripe-2 {
+  animation-delay: 2s, 2s;
+}
+
+/* ─── SPEED LINES ──────────────────────────────────────────────────────────── */
+/* Rayas horizontales que se mueven — estilo Initial D / muscle car promo      */
+@keyframes speed-sweep {
+  0%   { transform: translateX(-110%); opacity: 0; }
+  15%  { opacity: 0.55; }
+  85%  { opacity: 0.35; }
+  100% { transform: translateX(110%); opacity: 0; }
+}
+
+.speed-line {
+  position: absolute;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255,255,255,0.5) 40%,
+    rgba(255,107,53,0.6) 60%,
+    transparent 100%
+  );
+  animation: speed-sweep linear infinite;
+  pointer-events: none;
+}
+
+/* ─── CORNER HUD BRACKETS ──────────────────────────────────────────────────── */
+/* Esquinas estilo HUD de superdeportivo / racing configurator                 */
+.hud-corner {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+}
+.hud-corner::before,
+.hud-corner::after {
+  content: '';
+  position: absolute;
+  background: #FF6B35;
+}
+.hud-corner::before { width: 100%; height: 2px; top: 0; left: 0; }
+.hud-corner::after  { width: 2px; height: 100%; top: 0; left: 0; }
+
+.hud-corner.tr { top: 16px; right: 16px; transform: rotate(90deg); }
+.hud-corner.bl { bottom: 16px; left: 16px; transform: rotate(270deg); }
+.hud-corner.tl { top: 16px; left: 16px; }
+.hud-corner.br { bottom: 16px; right: 16px; transform: rotate(180deg); }
+
+@keyframes hud-blink {
+  0%, 90%, 100% { opacity: 1; }
+  95% { opacity: 0.2; }
+}
+.hud-corner { animation: hud-blink 5s ease-in-out infinite; }
+.hud-corner.tr { animation-delay: 1.2s; }
+.hud-corner.bl { animation-delay: 2.4s; }
+.hud-corner.br { animation-delay: 0.6s; }
+
+/* ─── ORANGE SCAN LINE ─────────────────────────────────────────────────────── */
+@keyframes scan {
+  0%   { top: -2px; opacity: 0.6; }
+  100% { top: 100%; opacity: 0; }
+}
+.scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, rgba(255,107,53,0.6), transparent);
+  animation: scan 8s linear infinite;
+  pointer-events: none;
+}
+
+/* ─── CARD DARK ────────────────────────────────────────────────────────────── */
 .card-dark {
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
@@ -43,65 +145,33 @@ h1, h2, h3, h4 {
   border-color: #FF6B35;
 }
 
-/* FAB pulse verde */
-@keyframes fab-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
-  50% { box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
-}
-.fab-pulse {
-  animation: fab-pulse 3s ease-in-out infinite;
-}
-
-/* Orange pulse */
-@keyframes orange-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.5); }
-  50% { box-shadow: 0 0 0 10px rgba(255, 107, 53, 0); }
-}
-.orange-pulse {
-  animation: orange-pulse 2.5s ease-in-out infinite;
-}
-
-/* Línea animada naranja */
-@keyframes line-grow {
-  from { width: 0; }
-  to { width: 80px; }
-}
-.accent-line {
-  display: block;
-  height: 3px;
-  background: #FF6B35;
-  border-radius: 2px;
-  animation: line-grow 0.6s ease forwards;
-}
-
-/* Shimmer dark */
-.shimmer {
-  background: linear-gradient(90deg, #111 25%, #1a1a1a 50%, #111 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-}
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-/* Hero overlay gradient */
+/* ─── HERO OVERLAY ─────────────────────────────────────────────────────────── */
 .hero-overlay {
   background: linear-gradient(
     to bottom,
-    rgba(0,0,0,0.72) 0%,
-    rgba(0,0,0,0.55) 40%,
-    rgba(10,10,10,0.95) 85%,
+    rgba(0,0,0,0.65) 0%,
+    rgba(0,0,0,0.50) 30%,
+    rgba(10,10,10,0.88) 75%,
     #0A0A0A 100%
   );
 }
 
-/* Stat number glow */
+/* ─── ANGLED SECTION ───────────────────────────────────────────────────────── */
+.section-angled-top {
+  clip-path: polygon(0 5%, 100% 0%, 100% 100%, 0% 100%);
+  margin-top: -40px;
+  padding-top: 60px;
+}
+.section-angled-both {
+  clip-path: polygon(0 3%, 100% 0%, 100% 97%, 0% 100%);
+}
+
+/* ─── STAT GLOW ─────────────────────────────────────────────────────────────── */
 .stat-number {
   text-shadow: 0 0 40px rgba(255, 107, 53, 0.5);
 }
 
-/* Input dark */
+/* ─── INPUTS DARK ──────────────────────────────────────────────────────────── */
 .input-dark {
   background: #111;
   border: 2px solid #2a2a2a;
@@ -110,3 +180,42 @@ h1, h2, h3, h4 {
 }
 .input-dark::placeholder { color: #555; }
 .input-dark:focus { border-color: #FF6B35; outline: none; }
+
+/* ─── FAB PULSE ─────────────────────────────────────────────────────────────── */
+@keyframes fab-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+  50%       { box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
+}
+.fab-pulse { animation: fab-pulse 3s ease-in-out infinite; }
+
+/* ─── ORANGE PULSE BTN ──────────────────────────────────────────────────────── */
+@keyframes orange-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.5); }
+  50%       { box-shadow: 0 0 0 10px rgba(255, 107, 53, 0); }
+}
+.orange-pulse { animation: orange-pulse 2.5s ease-in-out infinite; }
+
+/* ─── ACCENT LINE ───────────────────────────────────────────────────────────── */
+@keyframes line-grow {
+  from { width: 0; }
+  to   { width: 64px; }
+}
+.accent-line {
+  display: block;
+  height: 3px;
+  width: 64px;
+  background: linear-gradient(to right, #FF6B35, rgba(255,107,53,0.3));
+  border-radius: 2px;
+  animation: line-grow 0.7s ease forwards;
+}
+
+/* ─── SHIMMER DARK ──────────────────────────────────────────────────────────── */
+.shimmer {
+  background: linear-gradient(90deg, #111 25%, #1a1a1a 50%, #111 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}

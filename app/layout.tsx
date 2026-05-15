@@ -54,37 +54,37 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="font-body bg-[#0A0A0A] text-white">
 
         {/* ── Header ── */}
-        <header className="bg-brand-black text-white sticky top-0 z-50 shadow-lg">
-          <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
-            <a href="/" className="flex items-center gap-3">
+        <header className="bg-[#0A0A0A]/95 backdrop-blur-sm border-b border-[#1f1f1f] text-white sticky top-0 z-50">
+          <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="/" className="flex items-center gap-3.5">
               <Image
                 src="/logo.svg"
                 alt="ShopTire Ajusco"
-                width={44}
-                height={44}
-                className="rounded-full bg-white p-0.5"
+                width={52}
+                height={52}
+                className="rounded-full bg-white p-0.5 shadow-[0_0_14px_rgba(255,107,53,0.3)]"
                 priority
               />
-              <div className="hidden sm:block">
-                <p className="font-heading text-base font-bold leading-none tracking-tight">
-                  ShopTire <span className="text-brand-orange">Ajusco</span>
+              <div>
+                <p className="font-heading text-xl font-extrabold leading-none tracking-tight">
+                  ShopTire <span className="text-[#FF6B35]">Ajusco</span>
                 </p>
-                <p className="text-[10px] text-gray-400 leading-none mt-0.5">Llantas • CDMX</p>
+                <p className="text-[11px] text-gray-500 leading-none mt-1 uppercase tracking-widest">Llantas · CDMX</p>
               </div>
             </a>
 
-            <nav className="flex items-center gap-3">
-              <a href="/catalogo" className="text-sm text-gray-300 hover:text-white hidden sm:block transition-colors">
+            <nav className="flex items-center gap-4">
+              <a href="/catalogo" className="text-sm text-gray-400 hover:text-white hidden sm:block transition-colors font-medium">
                 Catálogo
               </a>
               <a
                 href="https://wa.me/5215512899120"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 bg-[#25D366] hover:bg-[#1ebe5d] text-white text-sm font-medium px-3 py-1.5 rounded-full transition-colors"
+                className="flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebe5d] text-white text-sm font-bold px-4 py-2 rounded-full transition-colors"
               >
                 {WA_ICON}
-                <span>WhatsApp</span>
+                <span className="hidden sm:inline">WhatsApp</span>
               </a>
             </nav>
           </div>
