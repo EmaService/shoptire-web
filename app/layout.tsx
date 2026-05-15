@@ -29,6 +29,11 @@ export const metadata: Metadata = {
   title: 'ShopTire Ajusco — Llantas en CDMX',
   description: 'Encuentra llantas de todas las medidas. Entrega rápida en CDMX. ShopTire Ajusco.',
   keywords: 'llantas, CDMX, ajusco, neumáticos, llantería, llantas baratas CDMX',
+  icons: {
+    icon: '/logo.svg',
+    shortcut: '/logo.svg',
+    apple: '/logo.svg',
+  },
   openGraph: {
     title: 'ShopTire Ajusco — Llantas en CDMX',
     description: 'Busca tu medida y cotiza al instante.',
