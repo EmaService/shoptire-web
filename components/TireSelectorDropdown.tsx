@@ -86,12 +86,12 @@ export default function TireSelectorDropdown() {
       .catch(() => { setError(true); setLoading(false); });
   }, []);
 
-  const anchos  = [...new Set(allParsed.map(p => p.ancho))].sort((a, b) => +a - +b);
+  const anchos  = Array.from(new Set(allParsed.map(p => p.ancho))).sort((a, b) => +a - +b);
   const perfiles = ancho
-    ? [...new Set(allParsed.filter(p => p.ancho === ancho).map(p => p.perfil))].sort((a, b) => +a - +b)
+    ? Array.from(new Set(allParsed.filter(p => p.ancho === ancho).map(p => p.perfil))).sort((a, b) => +a - +b)
     : [];
   const rines = (ancho && perfil)
-    ? [...new Set(allParsed.filter(p => p.ancho === ancho && p.perfil === perfil).map(p => p.rin))].sort((a, b) => +a - +b)
+    ? Array.from(new Set(allParsed.filter(p => p.ancho === ancho && p.perfil === perfil).map(p => p.rin))).sort((a, b) => +a - +b)
     : [];
 
   const handleAncho  = (v: string) => { setAncho(v); setPerfil(''); setRin(''); };

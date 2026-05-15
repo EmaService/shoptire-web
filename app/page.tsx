@@ -1,4 +1,5 @@
 import TireSelectorDropdown from '@/components/TireSelectorDropdown';
+import SearchBar from '@/components/SearchBar';
 import Image from 'next/image';
 
 
