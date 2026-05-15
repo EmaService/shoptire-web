@@ -47,7 +47,7 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════════════
           HERO
       ══════════════════════════════════════════════════ */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      <section className="relative min-h-[82vh] flex items-center overflow-hidden">
 
         {/* Foto de fondo */}
         <div
@@ -89,7 +89,7 @@ export default function HomePage() {
         <div className="hud-corner br z-[2]" />
 
         {/* ── Contenido ── */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 w-full py-28 sm:py-36">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 w-full py-14 sm:py-20">
           <div className="max-w-3xl">
 
             {/* Rating Google */}
