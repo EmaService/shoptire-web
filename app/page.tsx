@@ -1,11 +1,6 @@
-import SearchBar from '@/components/SearchBar';
+import TireSelectorDropdown from '@/components/TireSelectorDropdown';
 import Image from 'next/image';
 
-const MEDIDAS_POPULARES = [
-  '175/70 R13', '185/65 R15', '195/65 R15',
-  '205/55 R16', '205/60 R16', '215/65 R16',
-  '235/65 R17', '265/70 R17',
-];
 
 const STATS = [
   { num: '+10,000', label: 'referencias' },
@@ -139,24 +134,11 @@ export default function HomePage() {
             </p>
 
             {/* Search */}
-            <div className="mb-6">
-              <p className="text-xs text-gray-500 mb-3 uppercase tracking-wider">
-                Escribe la medida — la encuentras en el flanco de tu llanta
+            <div className="mb-2">
+              <p className="text-xs text-gray-500 mb-4 uppercase tracking-wider">
+                Selecciona tu medida — la encuentras en el flanco de la llanta
               </p>
-              <SearchBar autoFocus variant="dark" />
-            </div>
-
-            {/* Medidas populares */}
-            <div className="flex flex-wrap gap-2">
-              {MEDIDAS_POPULARES.map(m => (
-                <a
-                  key={m}
-                  href={`/catalogo?medida=${encodeURIComponent(m)}`}
-                  className="font-mono text-xs bg-white/5 hover:bg-[#FF6B35] text-gray-400 hover:text-white px-3 py-1.5 rounded-full transition-all border border-white/10 hover:border-[#FF6B35]"
-                >
-                  {m}
-                </a>
-              ))}
+              <TireSelectorDropdown />
             </div>
           </div>
         </div>
