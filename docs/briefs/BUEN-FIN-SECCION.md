@@ -1,56 +1,64 @@
-# Sección "Buen Fin" en la web de ShopTire
+# Sección "Buen Fin" en la web de ShopTire (v2: elegir sucursal)
 
-> Para la **IA ejecutora** de `shoptire-web` (Next 14, Vercel). Planner, 2026-11-12. Lo pidió Ray: el jefe quiere promocionar en la web, para el Buen Fin (13–17 nov 2026), las llantas **Sunfull/Longtrack** (lista del proveedor) y **Davanti** (compradas a Futurama).
+> Para la **IA ejecutora** de `shoptire-web` (Next 14, Vercel). Planner, 2026-11-12. **Reemplaza la versión anterior completa.**
+> Buen Fin: **13 al 17 de noviembre de 2026**. Llantas **Sunfull, Davanti y Longtrack** en promoción.
 
-## ⚠️ CAMBIO 2026-11-12: la promo es SOLO en la sucursal Tlalpan (manda sobre lo de abajo)
-Decisión de Ray: el Buen Fin es **solo en ShopTire Tlalpan** (Viaducto Tlalpan 78 A), del 13 al 17 de noviembre, con **15% de regreso en saldo para la próxima compra**. Aplica a todas las llantas del inventario de Tlalpan; en la web se anuncian estas 12.
-- `docs/briefs/buen-fin-llantas.json` ahora trae **solo 12 llantas**, con:
-  - `precioBuenFin`: lo que se cobra en caja, ya calculado como precio ÷ 0.85;
-  - `cashback`: el 15% que regresa como saldo;
-  - `disponible: "Tlalpan"`.
-- **Encabezado:** solo **ShopTire Tlalpan · Viaducto Tlalpan 78 A**. Quita Ajusco y la etiqueta "Disponible en Ajusco".
-- **Tarjeta:** precio grande `$1,244` y debajo, en verde, **"+ $187 de regreso para tu próxima compra"**.
-- **Leyenda fija:** "Promoción válida solo en sucursal Tlalpan, del 13 al 17 de noviembre de 2026 o hasta agotar existencias. El 15% se entrega como saldo a favor para tu próxima compra en la sucursal Tlalpan, ligado a tu número de teléfono. No aplica con meses sin intereses ni crédito. No se cambia por efectivo."
-- **WhatsApp:** Ray te da el número de Tlalpan. Hasta entonces, déjalo en la constante `WA_TLALPAN` con el valor `5215570601568` y un `// TODO número Tlalpan`.
-- Los filtros por marca y rin siguen igual (quita Longtrack si no hay).
+## Qué quiere Ray
+En `/buen-fin` el cliente ve las llantas en promoción y **elige la sucursal** con una pestaña arriba:
 
-## Datos (ya cruzados con Nexus, solo lectura)
-- `docs/briefs/buen-fin-llantas.json`: **41 llantas publicables**.
-  - Cada una trae `marca`, `modelo`, `medida`, `descripcion`, `precio` (precio público de Nexus Ajusco; si Ajusco no tiene precio, el de Tlalpan), `existenciaAjusco` y `existenciaTlalpan`.
-- Se dejaron **fuera** 10: sin existencia en Nexus, precio menor al costo o costo dudoso. Ray las revisa; **no las agregues**.
-- El **costo nunca se publica**. No está en el JSON y no debe estar en la página.
+| | **Ajusco** | **Tlalpan** |
+|---|---|---|
+| Precio | Precio normal de Ajusco | Precio de Buen Fin (ya calculado por Nexus) |
+| Extra | Instalación, balanceo, válvulas y nitrógeno gratis; **alineación gratis desde 2 llantas** | **15% de regreso** en saldo para su próxima compra (válido 365 días) + los mismos servicios gratis |
+| Disponibilidad | "Disponible en Ajusco" | "En tienda" o **"Llega al día siguiente"** (viene de Ajusco por traslado) |
+| Botón | **"La quiero en Ajusco"** → WhatsApp de Ajusco | **"Apartar en Tlalpan"** → formulario (abajo) |
 
-## Qué hacer
-1. Copia el JSON a `app/buen-fin/llantas.ts` como arreglo tipado (`export const LLANTAS_BUEN_FIN = [...] as const`). Datos estáticos: la promo dura 5 días y así no depende del backend.
-2. Página nueva **`/buen-fin`**, con el mismo estilo de `/promos` (fondo negro, móvil primero):
-   - **Encabezado:** "🔥 BUEN FIN · 13 al 17 de noviembre" y las dos sucursales:
-     - **ShopTire Ajusco** (Héroes de Padierna);
-     - **ShopTire Tlalpan** (Viaducto Tlalpan 78 A).
-   - Si existe `public/promos/buen-fin.jpg`, la imagen de la campaña arriba. Ray la va a poner; si no está, no se muestra nada roto.
-   - **Filtros:**
-     - chips por **rin** (14, 15, 16, 17, 18, 19, 20, camión), sacados de la medida;
-     - chips por **marca** (Sunfull, Davanti, Longtrack);
-     - un buscador de medida que acepte "205/55r16", "205 55 16" y "2055516".
-   - **Tarjeta por llanta:** marca, modelo, medida grande y **precio** con formato `$1,080`. Indica **"Disponible en Ajusco"**, **"Disponible en Tlalpan"** o ambas, según la existencia > 0. **No muestres el número de piezas.**
-   - Botón por tarjeta **"La quiero"**: abre WhatsApp `5215570601568` con el texto "Hola, vi en el Buen Fin la llanta {marca} {modelo} {medida} a ${precio}. ¿Me la aparto?".
-   - **Pie fijo:** "✅ Instalación · Balanceo · Válvulas · Nitrógeno — gratis" y "Precios válidos del 13 al 17 de noviembre de 2026 o hasta agotar existencias".
-   - Orden: por rin y luego por medida.
-3. **Enlaces:**
-   - un banner en la página principal (`app/page.tsx`), arriba del selector de medida: "🔥 Buen Fin: llantas Sunfull y Davanti — Ver ofertas →", que lleve a `/buen-fin`;
-   - el mismo enlace en `/promos`.
-4. **SEO:** `metadata` con título "Buen Fin 2026 — Llantas Sunfull y Davanti | ShopTire", Open Graph con la imagen si existe, y `/buen-fin` en `app/sitemap.ts`.
-5. **Apagar al terminar:** constante `BUEN_FIN_HASTA = "2026-11-18T06:00:00Z"` (fin del 17 en CDMX). Después de esa fecha, el banner de inicio se oculta y `/buen-fin` muestra "El Buen Fin terminó" con un botón al catálogo normal. **No borres la página.**
+## Datos: en vivo desde Nexus (la versión anterior usaba un JSON estático y ya no)
+- Ruta de servidor `app/api/buen-fin/route.ts`, que llama `GET {NEXUS_URL}/api/public/buen-fin` con el header `x-api-key: {NEXUS_BUEN_FIN_KEY}`. Caché de 60 s (`revalidate: 60`). **La llave nunca va al navegador.**
+- Respuesta (la define el brief de Nexus `BUEN-FIN-API-WEB-BOT.md`):
+  - `{ activo, desde, hasta, cashback: { pct }, llantas: [...] }`;
+  - cada llanta: `{ id, marca, modelo, medida, descripcion, ajusco: { disponible, precio }, tlalpan: { enTienda, llegaManana, precio, cashback } }`.
+- Variables nuevas en Vercel, que pone Ray: `NEXUS_URL=https://nexus-erp-orcin.vercel.app` y `NEXUS_BUEN_FIN_KEY` (la misma llave del bot de Ajusco; se la paso yo a Ray).
+- Si Nexus no responde: "Estamos actualizando las promociones" y el botón de WhatsApp. **Nunca precios inventados.**
+- `docs/briefs/buen-fin-llantas.json` queda **solo como referencia**; no lo uses en la página.
+
+## Página `/buen-fin` (móvil primero, estilo de `/promos`: fondo negro, acentos rojo y amarillo)
+1. **Encabezado:** "🔥 BUEN FIN · 13 al 17 de noviembre". Si existe `public/promos/buen-fin.jpg`, va arriba.
+2. **Pestañas de sucursal** grandes: **"📍 Ajusco"** | **"📍 Tlalpan · 15% de regreso"**.
+   - Abre en Tlalpan si la URL trae `?sucursal=tlalpan`; si no, en Ajusco. Guarda la elección en `localStorage`.
+   - Debajo, la dirección de la sucursal elegida:
+     - **Ajusco:** Huehuetán 286, Tlalpan, CDMX;
+     - **Tlalpan:** Viaducto Tlalpan 78 A, Huipulco, CDMX.
+3. **Filtros:** chips por **rin** (14…20 y camión), chips por **marca** y un buscador de medida que acepte "205/55r16", "205 55 16" y "2055516".
+4. **Tarjeta:**
+   - marca, modelo y medida grande;
+   - **precio de la sucursal elegida** con formato `$1,244`;
+   - en **Tlalpan**, debajo en verde: "**+ $187 de regreso** para tu próxima compra";
+   - disponibilidad según la sucursal. En Ajusco, si no está disponible, la tarjeta sale gris con "Agotada en Ajusco · disponible en Tlalpan". **Nunca el número de piezas.**
+5. **Botones:**
+   - **Ajusco** → WhatsApp `5215570601568` con: "Hola, vi en el Buen Fin la {marca} {modelo} {medida} a ${precio} en Ajusco. ¿Me la aparto?".
+   - **Tlalpan, en tienda** → WhatsApp de Tlalpan (constante `WA_TLALPAN`; Ray da el número; mientras, `5215570601568` con `// TODO`), con el texto equivalente que diga Tlalpan y el 15%.
+   - **Tlalpan, llega al día siguiente** → abre un formulario pequeño: nombre, teléfono a 10 dígitos y piezas (1–8). Al enviar llama a `app/api/buen-fin/apartar/route.ts` (servidor), que reenvía a `POST {NEXUS_URL}/api/public/buen-fin/apartar-tlalpan` con la llave.
+     - Si sale bien: "✅ ¡Listo! Te la traemos a Tlalpan. Llega al día siguiente; te llamamos para confirmar." y un botón opcional de WhatsApp de Tlalpan.
+     - Si hay error, muestra el mensaje de Nexus ("Ya la apartaste", "Solo hay N").
+6. **Leyendas fijas:**
+   - **Ajusco:** "Instalación, balanceo, válvulas y nitrógeno gratis. Alineación gratis en la compra de 2 llantas o más."
+   - **Tlalpan:** "Promoción válida solo en sucursal Tlalpan del 13 al 17 de noviembre de 2026 o hasta agotar existencias. El 15% se entrega como saldo a favor para tu próxima compra en Tlalpan, ligado a tu teléfono, válido 365 días. No aplica con meses sin intereses ni crédito. No se cambia por efectivo."
+7. **Enlaces:** banner en la portada (`app/page.tsx`) "🔥 Buen Fin: Sunfull y Davanti — Ver ofertas →" y el mismo enlace en `/promos`. `/buen-fin` va en `sitemap.ts`, con metadata y Open Graph.
+8. **Fin de la promo:** si `activo` es false después del 17, la página dice "El Buen Fin terminó" con un botón al catálogo, y el banner de la portada se oculta. **No borres la página.**
 
 ## Reglas
-- **Nunca** el nombre del proveedor (Futurama, etc.) en la página. Al cliente se le dice "nuestra bodega".
-- No toques el catálogo, los pedidos, Mercado Pago ni el backend (`/web/*`).
-- Si Ray manda la decisión del cashback 15% antes de publicar, **no la inventes en la página**. Eso se agrega aparte cuando él lo confirme.
+- **Nunca** el proveedor (Futurama u otro) ni el costo en la página: `grep -ri "futurama\|costo" app/buen-fin` debe salir vacío.
+- No toques el catálogo, los pedidos, Mercado Pago ni `/web/*` del backend.
+- **Antiabuso** del formulario: el botón se deshabilita mientras envía, y el teléfono se valida en el navegador y en el servidor.
 
 ## Verificación
 - `npm run build` sin errores.
-- En celular (390 px) y escritorio, con capturas de: la página, el filtro por rin 17, la búsqueda "205/55r17" y el enlace de WhatsApp de una tarjeta (muestra la URL).
-- Que la página no tenga ningún costo ni nombre de proveedor: `grep -i "futurama\|costo" app/buen-fin` debe salir vacío.
-- Simula una fecha posterior a `BUEN_FIN_HASTA` y confirma que sale "El Buen Fin terminó" y el banner de inicio se oculta.
-
-## Qué reportar
-Commit, `git show --stat` y las capturas. **Push solo cuando lo apruebe** (Vercel publica al hacer push).
+- Con Nexus del banco local (o un servidor falso con el JSON del brief de Nexus), manda capturas en 390 px de:
+  - pestaña Ajusco;
+  - pestaña Tlalpan con "Llega al día siguiente";
+  - formulario enviado;
+  - error "Ya la apartaste";
+  - filtro rin 17;
+  - Nexus caído.
+- **No hagas push hasta que lo apruebe** (Vercel publica al hacer push).
