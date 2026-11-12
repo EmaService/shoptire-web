@@ -26,6 +26,7 @@ const robotoMono = Roboto_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://shoptire-web.vercel.app'),
   title: 'ShopTire Ajusco — Llantas en CDMX',
   description: 'Encuentra llantas de todas las medidas. Entrega rápida en CDMX. ShopTire Ajusco.',
   keywords: 'llantas, CDMX, ajusco, neumáticos, llantería, llantas baratas CDMX',

@@ -1,7 +1,7 @@
 import TireSelectorDropdown from '@/components/TireSelectorDropdown';
 import SearchBar from '@/components/SearchBar';
 import Image from 'next/image';
-import { fechaBuenFinActiva } from './buen-fin/llantas';
+import { getBuenFin } from './buen-fin/nexus';
 
 
 const STATS = [
@@ -54,6 +54,8 @@ async function fetchMedidas(): Promise<string[]> {
 
 export default async function HomePage() {
   const medidas = await fetchMedidas();
+  const buenFin = await getBuenFin();
+  const mostrarBuenFin = buenFin.ok && buenFin.data.activo === true;
 
   return (
     <main className="bg-[#0A0A0A]">
@@ -154,15 +156,15 @@ export default async function HomePage() {
 
             {/* Search */}
             <div className="mb-2">
-              {fechaBuenFinActiva() && (
+              {mostrarBuenFin && (
                 <a
                   href="/buen-fin"
-                  className="group flex items-center justify-between gap-3 bg-gradient-to-r from-[#FF6B35] to-[#ff8a4c] hover:to-[#ffa06b] text-white font-bold rounded-xl px-5 py-3.5 mb-5 shadow-lg shadow-[#FF6B35]/20 transition-all active:scale-[0.99]"
+                  className="group flex items-center justify-between gap-3 bg-[#E11D2E] hover:bg-[#c4162a] text-white font-bold rounded-xl px-5 py-3.5 mb-5 shadow-lg shadow-[#E11D2E]/25 transition-all active:scale-[0.99]"
                 >
                   <span className="text-sm sm:text-base">
-                    🔥 Buen Fin: llantas Sunfull y Davanti
+                    🔥 Buen Fin: Sunfull y Davanti
                   </span>
-                  <span className="shrink-0 text-xs sm:text-sm whitespace-nowrap bg-white/20 rounded-full px-3 py-1 group-hover:bg-white/30 transition-colors">
+                  <span className="shrink-0 text-xs sm:text-sm whitespace-nowrap bg-[#FFD400] text-black rounded-full px-3 py-1 group-hover:bg-[#ffe14d] transition-colors">
                     Ver ofertas →
                   </span>
                 </a>
