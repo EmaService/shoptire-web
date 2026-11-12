@@ -2,6 +2,18 @@
 
 > Para la **IA ejecutora** de `shoptire-web` (Next 14, Vercel). Planner, 2026-11-12. Lo pidió Ray: el jefe quiere promocionar en la web, para el Buen Fin (13–17 nov 2026), las llantas **Sunfull/Longtrack** (lista del proveedor) y **Davanti** (compradas a Futurama).
 
+## ⚠️ CAMBIO 2026-11-12: la promo es SOLO en la sucursal Tlalpan (manda sobre lo de abajo)
+Decisión de Ray: el Buen Fin es **solo en ShopTire Tlalpan** (Viaducto Tlalpan 78 A), del 13 al 17 de noviembre, con **15% de regreso en saldo para la próxima compra**. Aplica a todas las llantas del inventario de Tlalpan; en la web se anuncian estas 12.
+- `docs/briefs/buen-fin-llantas.json` ahora trae **solo 12 llantas**, con:
+  - `precioBuenFin`: lo que se cobra en caja, ya calculado como precio ÷ 0.85;
+  - `cashback`: el 15% que regresa como saldo;
+  - `disponible: "Tlalpan"`.
+- **Encabezado:** solo **ShopTire Tlalpan · Viaducto Tlalpan 78 A**. Quita Ajusco y la etiqueta "Disponible en Ajusco".
+- **Tarjeta:** precio grande `$1,244` y debajo, en verde, **"+ $187 de regreso para tu próxima compra"**.
+- **Leyenda fija:** "Promoción válida solo en sucursal Tlalpan, del 13 al 17 de noviembre de 2026 o hasta agotar existencias. El 15% se entrega como saldo a favor para tu próxima compra en la sucursal Tlalpan, ligado a tu número de teléfono. No aplica con meses sin intereses ni crédito. No se cambia por efectivo."
+- **WhatsApp:** Ray te da el número de Tlalpan. Hasta entonces, déjalo en la constante `WA_TLALPAN` con el valor `5215570601568` y un `// TODO número Tlalpan`.
+- Los filtros por marca y rin siguen igual (quita Longtrack si no hay).
+
 ## Datos (ya cruzados con Nexus, solo lectura)
 - `docs/briefs/buen-fin-llantas.json`: **41 llantas publicables**.
   - Cada una trae `marca`, `modelo`, `medida`, `descripcion`, `precio` (precio público de Nexus Ajusco; si Ajusco no tiene precio, el de Tlalpan), `existenciaAjusco` y `existenciaTlalpan`.

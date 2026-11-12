@@ -1,371 +1,98 @@
 [
  {
   "marca": "SUNFULL",
-  "modelo": "MONT-PRO HP881",
-  "medida": "265/50R20",
-  "descripcion": "MONT-PRO HP881 265/50R20 111V",
-  "precio": 2180,
-  "existenciaAjusco": 38,
-  "existenciaTlalpan": 0
- },
- {
-  "marca": "SUNFULL",
-  "modelo": "SF-888",
-  "medida": "185/55R16",
-  "descripcion": "SF-888 185/55R16 83V",
-  "precio": 1000,
-  "existenciaAjusco": 17,
-  "existenciaTlalpan": 0
- },
- {
-  "marca": "SUNFULL",
-  "modelo": "SF-888",
-  "medida": "215/45R17",
-  "descripcion": "SF-888 215/45R17 91W",
-  "precio": 1230,
-  "existenciaAjusco": 94,
-  "existenciaTlalpan": 0
- },
- {
-  "marca": "SUNFULL",
-  "modelo": "SF-688",
-  "medida": "205/60R16",
-  "descripcion": "SF-688 205/60R16 92V",
-  "precio": 1100,
-  "existenciaAjusco": 90,
-  "existenciaTlalpan": 0
- },
- {
-  "marca": "SUNFULL",
-  "modelo": "SF-688",
-  "medida": "195/60R14",
-  "descripcion": "SF-688 195/60R14 86H",
-  "precio": 950,
-  "existenciaAjusco": 17,
-  "existenciaTlalpan": 0
- },
- {
-  "marca": "SUNFULL",
-  "modelo": "SF-688",
-  "medida": "205/60R15",
-  "descripcion": "SF-688 205/60R15 91V",
-  "precio": 1050,
-  "existenciaAjusco": 54,
-  "existenciaTlalpan": 0
- },
- {
-  "marca": "SUNFULL",
-  "modelo": "SF-688",
-  "medida": "205/70R14",
-  "descripcion": "SF-688 205/70R14 95H",
-  "precio": 1200,
-  "existenciaAjusco": 97,
-  "existenciaTlalpan": 0
- },
- {
-  "marca": "SUNFULL",
-  "modelo": "SF-688",
-  "medida": "225/60R16",
-  "descripcion": "SF-688 225/60R16 102V",
-  "precio": 1270,
-  "existenciaAjusco": 17,
-  "existenciaTlalpan": 0
- },
- {
-  "marca": "SUNFULL",
-  "modelo": "SF-888",
-  "medida": "205/40R17",
-  "descripcion": "SF-888 205/40R17 84W",
-  "precio": 1080,
-  "existenciaAjusco": 100,
-  "existenciaTlalpan": 0
- },
- {
-  "marca": "SUNFULL",
-  "modelo": "SF-888",
-  "medida": "205/45R16",
-  "descripcion": "SF-888 205/45R16 87W",
-  "precio": 1150,
-  "existenciaAjusco": 36,
-  "existenciaTlalpan": 0
- },
- {
-  "marca": "SUNFULL",
-  "modelo": "SF-888",
-  "medida": "205/55R17",
-  "descripcion": "SF-888 205/55R17 95W",
-  "precio": 1270,
-  "existenciaAjusco": 84,
-  "existenciaTlalpan": 0
- },
- {
-  "marca": "SUNFULL",
-  "modelo": "SF-888",
-  "medida": "235/55R17",
-  "descripcion": "SF-888 235/55R17 103W",
-  "precio": 1440,
-  "existenciaAjusco": 19,
-  "existenciaTlalpan": 0
- },
- {
-  "marca": "SUNFULL",
-  "modelo": "MONT-PRO AT782",
-  "medida": "215/75R15",
-  "descripcion": "MONT-PRO AT782 215/75R15 100S",
-  "precio": 1350,
-  "existenciaAjusco": 50,
-  "existenciaTlalpan": 0
- },
- {
-  "marca": "SUNFULL",
-  "modelo": "SF-600",
-  "medida": "175/65R14",
-  "descripcion": "SF-600 175/65R14 82H",
-  "precio": 770,
-  "existenciaAjusco": 139,
-  "existenciaTlalpan": 0
- },
- {
-  "marca": "SUNFULL",
-  "modelo": "SF-600",
-  "medida": "195/65R15",
-  "descripcion": "SF-600 195/65R15 91H",
-  "precio": 940,
-  "existenciaAjusco": 119,
-  "existenciaTlalpan": 4
- },
- {
-  "marca": "SUNFULL",
-  "modelo": "SF-600",
-  "medida": "185/70R14",
   "descripcion": "SF-600 185/70R14 88H",
-  "precio": 890,
-  "existenciaAjusco": 0,
-  "existenciaTlalpan": 4
+  "medida": "185/70R14",
+  "precioBuenFin": 1047,
+  "cashback": 157.05,
+  "disponible": "Tlalpan"
  },
  {
   "marca": "SUNFULL",
-  "modelo": "SF-888",
-  "medida": "245/45R17",
-  "descripcion": "SF-888 245/45R17 99W XL",
-  "precio": 1580,
-  "existenciaAjusco": 20,
-  "existenciaTlalpan": 0
- },
- {
-  "marca": "SUNFULL",
-  "modelo": "MONT-PRO MT781",
-  "medida": "33X12.5R20",
-  "descripcion": "MONT-PRO MT781 LT33X12.5R20 114Q 10PR",
-  "precio": 3420,
-  "existenciaAjusco": 40,
-  "existenciaTlalpan": 0
- },
- {
-  "marca": "SUNFULL",
-  "modelo": "MONT-PRO AT782",
-  "medida": "245/75R16",
-  "descripcion": "MONT-PRO AT782 LT245/75R16 120/116S 10PR",
-  "precio": 2060,
-  "existenciaAjusco": 90,
-  "existenciaTlalpan": 4
- },
- {
-  "marca": "SUNFULL",
-  "modelo": "SF-05",
-  "medida": "205R16C",
-  "descripcion": "SF-05 205R16C 110/108Q 8PR",
-  "precio": 1670,
-  "existenciaAjusco": 13,
-  "existenciaTlalpan": 0
- },
- {
-  "marca": "LONGTRACK",
-  "modelo": "AE-03",
-  "medida": "11R22.5",
-  "descripcion": "AE-03 11R22.5 148/145M 18PR",
-  "precio": 3610.85,
-  "existenciaAjusco": 32,
-  "existenciaTlalpan": 0
+  "descripcion": "SF-600 195/65R15 91H",
+  "medida": "195/65R15",
+  "precioBuenFin": 1106,
+  "cashback": 165.9,
+  "disponible": "Tlalpan"
  },
  {
   "marca": "DAVANTI",
-  "modelo": "DX640",
-  "medida": "245/35R19",
-  "descripcion": "DX640 245/35R19 93Y",
-  "precio": 1799,
-  "existenciaAjusco": 2,
-  "existenciaTlalpan": 12
- },
- {
-  "marca": "DAVANTI",
-  "modelo": "DX390",
-  "medida": "205/50R16",
-  "descripcion": "DX390 205/50R16 91W",
-  "precio": 1169,
-  "existenciaAjusco": 8,
-  "existenciaTlalpan": 0
- },
- {
-  "marca": "DAVANTI",
-  "modelo": "DX740",
-  "medida": "225/60R18",
-  "descripcion": "DX740 225/60R18 100V",
-  "precio": 1805.76,
-  "existenciaAjusco": 16,
-  "existenciaTlalpan": 0
- },
- {
-  "marca": "DAVANTI",
-  "modelo": "DX390",
-  "medida": "205/45R16",
   "descripcion": "DX390 205/45R16 87W",
-  "precio": 1069,
-  "existenciaAjusco": 20,
-  "existenciaTlalpan": 20
+  "medida": "205/45R16",
+  "precioBuenFin": 1244,
+  "cashback": 186.6,
+  "disponible": "Tlalpan"
  },
  {
   "marca": "DAVANTI",
-  "modelo": "DX390",
-  "medida": "215/55R16",
-  "descripcion": "DX390 215/55R16",
-  "precio": 1210,
-  "existenciaAjusco": 8,
-  "existenciaTlalpan": 12
- },
- {
-  "marca": "DAVANTI",
-  "modelo": "TERRATOURA A/T",
-  "medida": "245/70R16",
-  "descripcion": "TERRATOURA A/T 245/70R16 LT 113/110T 8PR",
-  "precio": 2347.06,
-  "existenciaAjusco": 32,
-  "existenciaTlalpan": 0
- },
- {
-  "marca": "DAVANTI",
-  "modelo": "DX640",
-  "medida": "215/40R17",
-  "descripcion": "DX640 215/40R17 87W",
-  "precio": 1431.01,
-  "existenciaAjusco": 18,
-  "existenciaTlalpan": 0
- },
- {
-  "marca": "DAVANTI",
-  "modelo": "PROTOURA SPORT",
-  "medida": "225/55R17",
-  "descripcion": "PROTOURA SPORT 225/55R17 101Y",
-  "precio": 1608.31,
-  "existenciaAjusco": 8,
-  "existenciaTlalpan": 0
- },
- {
-  "marca": "DAVANTI",
-  "modelo": "DX640",
-  "medida": "235/50R17",
-  "descripcion": "DX640 235/50R17 96Y",
-  "precio": 1598.46,
-  "existenciaAjusco": 4,
-  "existenciaTlalpan": 0
- },
- {
-  "marca": "DAVANTI",
-  "modelo": "DX640",
-  "medida": "215/40R18",
-  "descripcion": "DX640 215/40R18 89Y",
-  "precio": 1411.77,
-  "existenciaAjusco": 20,
-  "existenciaTlalpan": 0
- },
- {
-  "marca": "DAVANTI",
-  "modelo": "DX640",
-  "medida": "235/40R18",
-  "descripcion": "DX640 235/40R18 91W",
-  "precio": 1500.41,
-  "existenciaAjusco": 20,
-  "existenciaTlalpan": 0
- },
- {
-  "marca": "DAVANTI",
-  "modelo": "DX640",
-  "medida": "255/35R19",
-  "descripcion": "DX640 255/35R19 96Y",
-  "precio": 2022.77,
-  "existenciaAjusco": 0,
-  "existenciaTlalpan": 19
- },
- {
-  "marca": "DAVANTI",
-  "modelo": "DX640",
-  "medida": "255/55R19",
-  "descripcion": "DX640 255/55R19 111Y",
-  "precio": 2564.52,
-  "existenciaAjusco": 0,
-  "existenciaTlalpan": 8
- },
- {
-  "marca": "DAVANTI",
-  "modelo": "DX390",
-  "medida": "195/55R15",
   "descripcion": "DX390 195/55R15 85V",
-  "precio": 1085.97,
-  "existenciaAjusco": 0,
-  "existenciaTlalpan": 29
+  "medida": "195/55R15",
+  "precioBuenFin": 1278,
+  "cashback": 191.7,
+  "disponible": "Tlalpan"
  },
  {
   "marca": "DAVANTI",
-  "modelo": "DX390",
-  "medida": "185/55R16",
+  "descripcion": "DX390 215/55R16",
+  "medida": "215/55R16",
+  "precioBuenFin": 1424,
+  "cashback": 213.6,
+  "disponible": "Tlalpan"
+ },
+ {
+  "marca": "DAVANTI",
   "descripcion": "DX390 185/55R16 83H",
-  "precio": 1263.57,
-  "existenciaAjusco": 0,
-  "existenciaTlalpan": 20
+  "medida": "185/55R16",
+  "precioBuenFin": 1487,
+  "cashback": 223.05,
+  "disponible": "Tlalpan"
  },
  {
   "marca": "DAVANTI",
-  "modelo": "PROTOURA SPORT",
-  "medida": "245/45R18",
-  "descripcion": "PROTOURA SPORT 245/45R18",
-  "precio": 1608.76,
-  "existenciaAjusco": 20,
-  "existenciaTlalpan": 0
- },
- {
-  "marca": "DAVANTI",
-  "modelo": "DX390",
-  "medida": "225/55R16",
-  "descripcion": "DX390 225/55R16 99W",
-  "precio": 1362.07,
-  "existenciaAjusco": 4,
-  "existenciaTlalpan": 0
- },
- {
-  "marca": "DAVANTI",
-  "modelo": "DX440",
-  "medida": "225/75R16C",
-  "descripcion": "DX440 225/75R16C 121/120R",
-  "precio": 1923.52,
-  "existenciaAjusco": 35,
-  "existenciaTlalpan": 0
- },
- {
-  "marca": "DAVANTI",
-  "modelo": "DX640",
-  "medida": "235/50R18",
   "descripcion": "DX640 235/50R18 101W",
-  "precio": 1707.27,
-  "existenciaAjusco": 0,
-  "existenciaTlalpan": 20
+  "medida": "235/50R18",
+  "precioBuenFin": 2009,
+  "cashback": 301.35,
+  "disponible": "Tlalpan"
  },
  {
   "marca": "DAVANTI",
-  "modelo": "DX640",
-  "medida": "235/40R19",
+  "descripcion": "DX640 245/35R19 93Y",
+  "medida": "245/35R19",
+  "precioBuenFin": 2116,
+  "cashback": 317.4,
+  "disponible": "Tlalpan"
+ },
+ {
+  "marca": "DAVANTI",
+  "descripcion": "DX640 255/35R19 96Y",
+  "medida": "255/35R19",
+  "precioBuenFin": 2294,
+  "cashback": 344.1,
+  "disponible": "Tlalpan"
+ },
+ {
+  "marca": "SUNFULL",
+  "descripcion": "MONT-PRO AT782 LT245/75R16 120/116S 10PR",
+  "medida": "245/75R16",
+  "precioBuenFin": 2424,
+  "cashback": 363.6,
+  "disponible": "Tlalpan"
+ },
+ {
+  "marca": "DAVANTI",
   "descripcion": "DX640 235/40R19 96W",
-  "precio": 2121.27,
-  "existenciaAjusco": 0,
-  "existenciaTlalpan": 12
+  "medida": "235/40R19",
+  "precioBuenFin": 2496,
+  "cashback": 374.4,
+  "disponible": "Tlalpan"
+ },
+ {
+  "marca": "DAVANTI",
+  "descripcion": "DX640 255/55R19 111Y",
+  "medida": "255/55R19",
+  "precioBuenFin": 2941,
+  "cashback": 441.15,
+  "disponible": "Tlalpan"
  }
 ]
