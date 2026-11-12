@@ -28,6 +28,7 @@ const SIN_LLANTAS: LlantaBuenFin[] = [];
 type Props = {
   data: BuenFinApiData;
   initialSucursal: Sucursal;
+  fase: 'antes' | 'activo';
 };
 
 type Resultado = { ok: boolean; mensaje: string };
@@ -49,9 +50,10 @@ function ordenar(a: LlantaBuenFin, b: LlantaBuenFin) {
   return a.medida.localeCompare(b.medida, 'es');
 }
 
-export default function BuenFinClient({ data, initialSucursal }: Props) {
+export default function BuenFinClient({ data, initialSucursal, fase }: Props) {
   const llantas = data.llantas ?? SIN_LLANTAS;
   const pct = numero(data.cashback?.pct) ?? 15;
+  const antes = fase === 'antes';
 
   const [sucursal, setSucursal] = useState<Sucursal>(initialSucursal);
   const [marca, setMarca] = useState<string | null>(null);
@@ -224,6 +226,10 @@ export default function BuenFinClient({ data, initialSucursal }: Props) {
   }
 
   const precioSeleccion = seleccion ? precioSucursal(seleccion, sucursal) : null;
+  const leyenda =
+    sucursal === 'tlalpan' && antes
+      ? 'Precio de Buen Fin y 15% de regreso a partir del 13 de noviembre'
+      : LEYENDAS[sucursal];
 
   return (
     <>
@@ -263,6 +269,11 @@ export default function BuenFinClient({ data, initialSucursal }: Props) {
             </button>
           </div>
           <p className="text-center text-xs text-gray-400 mt-3">📍 {DIRECCIONES[sucursal]}</p>
+          {sucursal === 'tlalpan' && antes && (
+            <p className="text-center text-xs font-semibold text-[#FFD400] mt-2 max-w-md mx-auto leading-relaxed">
+              Precio de Buen Fin y 15% de regreso a partir del 13 de noviembre
+            </p>
+          )}
         </div>
 
         <div id="filtros-buen-fin" className="-mx-4 mt-5 px-4 py-4 border-y border-white/5">
@@ -513,7 +524,9 @@ export default function BuenFinClient({ data, initialSucursal }: Props) {
                           <a
                             href={linkWhatsApp(
                               WA_AJUSCO,
-                              `Hola, vi en el Buen Fin la ${nombreMarca(l.marca)} ${l.modelo} ${l.medida} a ${formatearMoneda(precioAjusco)} en Ajusco. ¿Me la aparto?`
+                              antes
+                                ? `Hola, vi la llanta ${nombreMarca(l.marca)} ${l.modelo} ${l.medida} a ${formatearMoneda(precioAjusco)} en Ajusco. ¿Me la aparto?`
+                                : `Hola, vi en el Buen Fin la ${nombreMarca(l.marca)} ${l.modelo} ${l.medida} a ${formatearMoneda(precioAjusco)} en Ajusco. ¿Me la aparto?`
                             )}
                             target="_blank"
                             rel="noopener noreferrer"
@@ -535,23 +548,45 @@ export default function BuenFinClient({ data, initialSucursal }: Props) {
                         <a
                           href={linkWhatsApp(
                             WA_TLALPAN,
-                            `Hola, vi en el Buen Fin la ${nombreMarca(l.marca)} ${l.modelo} ${l.medida} a ${formatearMoneda(precioTlalpan)} en Tlalpan con 15% de regreso. ¿Me la aparto?`
+                            antes
+                              ? `Hola, vi la llanta ${nombreMarca(l.marca)} ${l.modelo} ${l.medida} a ${formatearMoneda(precioTlalpan)} en Tlalpan. ¿Me dan informes del Buen Fin?`
+                              : `Hola, vi en el Buen Fin la ${nombreMarca(l.marca)} ${l.modelo} ${l.medida} a ${formatearMoneda(precioTlalpan)} en Tlalpan con 15% de regreso. ¿Me la aparto?`
                           )}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#1ebe5c] text-white font-bold text-sm py-3.5 rounded-xl transition-all active:scale-95"
                         >
                           {WA_ICON}
-                          Apartar en Tlalpan
+                          {antes ? 'Preguntar por WhatsApp' : 'Apartar en Tlalpan'}
                         </a>
                       ) : llegaManana && precioTlalpan !== null ? (
-                        <button
-                          type="button"
-                          onClick={() => abrirFormulario(l)}
-                          className="w-full bg-[#E11D2E] hover:bg-[#c4162a] text-white font-bold text-sm py-3.5 rounded-xl transition-all active:scale-95"
-                        >
-                          Apartar en Tlalpan
-                        </button>
+                        antes ? (
+                          <div className="space-y-2">
+                            <p className="text-center text-[11px] font-bold text-amber-400 uppercase tracking-wider">
+                              Apartados a partir del 13 de noviembre
+                            </p>
+                            <a
+                              href={linkWhatsApp(
+                                WA_TLALPAN,
+                                `Hola, vi la llanta ${nombreMarca(l.marca)} ${l.modelo} ${l.medida} a ${formatearMoneda(precioTlalpan)} en Tlalpan. ¿Me dan informes del Buen Fin?`
+                              )}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#1ebe5c] text-white font-bold text-sm py-3.5 rounded-xl transition-all active:scale-95"
+                            >
+                              {WA_ICON}
+                              Preguntar por WhatsApp
+                            </a>
+                          </div>
+                        ) : (
+                          <button
+                            type="button"
+                            onClick={() => abrirFormulario(l)}
+                            className="w-full bg-[#E11D2E] hover:bg-[#c4162a] text-white font-bold text-sm py-3.5 rounded-xl transition-all active:scale-95"
+                          >
+                            Apartar en Tlalpan
+                          </button>
+                        )
                       ) : (
                         <button
                           type="button"
@@ -573,7 +608,7 @@ export default function BuenFinClient({ data, initialSucursal }: Props) {
       <section className="border-t border-white/10 bg-[#0d0d0d] px-4 py-10">
         <div className="max-w-3xl mx-auto space-y-5">
           <p className="text-gray-400 text-xs sm:text-sm leading-relaxed text-center">
-            {LEYENDAS[sucursal]}
+            {leyenda}
           </p>
           <p className="text-gray-500 text-[11px] text-center border-t border-white/5 pt-5">
             Precios válidos del 13 al 17 de noviembre de 2026 o hasta agotar existencias.

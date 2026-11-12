@@ -34,7 +34,7 @@ export default function PromosPage() {
           href="/buen-fin"
           className="group flex items-center justify-between gap-3 bg-[#E11D2E] hover:bg-[#c4162a] text-white font-bold rounded-xl px-5 py-3.5 shadow-lg shadow-[#E11D2E]/25 transition-all active:scale-[0.99]"
         >
-          <span className="text-sm">🔥 Buen Fin: Sunfull y Davanti</span>
+          <span className="text-sm">🔥 Buen Fin 13–17 nov: Sunfull y Davanti</span>
           <span className="shrink-0 text-xs whitespace-nowrap bg-[#FFD400] text-black rounded-full px-3 py-1 group-hover:bg-[#ffe14d] transition-colors">
             Ver ofertas →
           </span>

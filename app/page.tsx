@@ -2,6 +2,7 @@ import TireSelectorDropdown from '@/components/TireSelectorDropdown';
 import SearchBar from '@/components/SearchBar';
 import Image from 'next/image';
 import { getBuenFin } from './buen-fin/nexus';
+import { faseBuenFin } from './buen-fin/fechas';
 
 
 const STATS = [
@@ -55,7 +56,8 @@ async function fetchMedidas(): Promise<string[]> {
 export default async function HomePage() {
   const medidas = await fetchMedidas();
   const buenFin = await getBuenFin();
-  const mostrarBuenFin = buenFin.ok && buenFin.data.activo === true;
+  const fase = buenFin.ok ? faseBuenFin(buenFin.data) : 'terminado';
+  const mostrarBuenFin = fase !== 'terminado';
 
   return (
     <main className="bg-[#0A0A0A]">
@@ -162,7 +164,7 @@ export default async function HomePage() {
                   className="group flex items-center justify-between gap-3 bg-[#E11D2E] hover:bg-[#c4162a] text-white font-bold rounded-xl px-5 py-3.5 mb-5 shadow-lg shadow-[#E11D2E]/25 transition-all active:scale-[0.99]"
                 >
                   <span className="text-sm sm:text-base">
-                    🔥 Buen Fin: Sunfull y Davanti
+                    🔥 Buen Fin 13–17 nov: Sunfull y Davanti
                   </span>
                   <span className="shrink-0 text-xs sm:text-sm whitespace-nowrap bg-[#FFD400] text-black rounded-full px-3 py-1 group-hover:bg-[#ffe14d] transition-colors">
                     Ver ofertas →

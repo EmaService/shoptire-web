@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import BuenFinClient from './BuenFinClient';
 import { getBuenFin } from './nexus';
+import { faseBuenFin } from './fechas';
 import { WA_AJUSCO } from './constantes';
 import { linkWhatsApp } from './utils';
 import type { Sucursal } from './tipos';
@@ -103,7 +104,9 @@ export default async function BuenFinPage({ searchParams }: PageProps) {
     return <AvisoPromociones />;
   }
 
-  if (estado.data.activo === false) {
+  const fase = faseBuenFin(estado.data);
+
+  if (fase === 'terminado') {
     return <BuenFinTerminado />;
   }
 
@@ -139,8 +142,16 @@ export default async function BuenFinPage({ searchParams }: PageProps) {
             Del 13 al 17 de noviembre
           </span>
 
-          <h1 className="font-heading text-5xl sm:text-6xl font-extrabold text-white leading-none mb-3">
-            🔥 BUEN FIN
+          <h1
+            className={`font-heading font-extrabold text-white leading-none mb-3 ${
+              fase === 'antes'
+                ? 'text-3xl sm:text-5xl max-w-2xl mx-auto'
+                : 'text-5xl sm:text-6xl'
+            }`}
+          >
+            {fase === 'antes'
+              ? '🔥 El Buen Fin empieza el 13 de noviembre'
+              : '🔥 BUEN FIN'}
           </h1>
           <p className="font-heading text-lg sm:text-xl font-extrabold text-[#FFD400] mb-2">
             Sunfull · Davanti · Longtrack
@@ -167,7 +178,11 @@ export default async function BuenFinPage({ searchParams }: PageProps) {
         )}
       </section>
 
-      <BuenFinClient data={estado.data} initialSucursal={initialSucursal} />
+      <BuenFinClient
+        data={estado.data}
+        initialSucursal={initialSucursal}
+        fase={fase}
+      />
     </main>
   );
 }
