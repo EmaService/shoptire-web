@@ -70,7 +70,12 @@ export async function POST(req: NextRequest) {
         'Content-Type': 'application/json',
         'x-api-key': NEXUS_BUEN_FIN_KEY,
       },
-      body: JSON.stringify({ llantaId, nombre, telefono, piezas }),
+      body: JSON.stringify({
+        productId: llantaId,
+        qty: piezas,
+        clienteNombre: nombre,
+        clienteTelefono: telefono,
+      }),
       cache: 'no-store',
       signal: AbortSignal.timeout(10000),
     });
