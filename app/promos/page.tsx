@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import type { Metadata } from 'next';
+import { fechaBuenFinActiva } from '../buen-fin/llantas';
 
 export const metadata: Metadata = {
   title: 'Promociones — ShopTire Ajusco',
@@ -27,6 +28,21 @@ export default function PromosPage() {
         </div>
         <p className="text-gray-400 text-sm">Héroes de Padierna, CDMX · Lun–Sáb 9am–6pm</p>
       </div>
+
+      {/* Enlace Buen Fin */}
+      {fechaBuenFinActiva() && (
+        <div className="px-3 pb-4 max-w-lg mx-auto">
+          <a
+            href="/buen-fin"
+            className="group flex items-center justify-between gap-3 bg-gradient-to-r from-[#FF6B35] to-[#ff8a4c] hover:to-[#ffa06b] text-white font-bold rounded-xl px-5 py-3.5 shadow-lg shadow-[#FF6B35]/20 transition-all active:scale-[0.99]"
+          >
+            <span className="text-sm">🔥 Buen Fin: llantas Sunfull y Davanti</span>
+            <span className="shrink-0 text-xs whitespace-nowrap bg-white/20 rounded-full px-3 py-1 group-hover:bg-white/30 transition-colors">
+              Ver ofertas →
+            </span>
+          </a>
+        </div>
+      )}
 
       {/* Imágenes de promos */}
       <div className="flex flex-col items-center gap-4 px-3 pb-6 max-w-lg mx-auto">
