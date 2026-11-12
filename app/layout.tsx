@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Montserrat, Inter, Roboto_Mono } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import Image from 'next/image';
+import HeaderBrand from '@/components/HeaderBrand';
 import './globals.css';
 
 const montserrat = Montserrat({
@@ -57,22 +58,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* ── Header ── */}
         <header className="bg-[#0A0A0A]/95 backdrop-blur-sm border-b border-[#1f1f1f] text-white sticky top-0 z-50">
           <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-            <a href="/" className="flex items-center gap-3.5">
-              <Image
-                src="/logo.svg"
-                alt="ShopTire Ajusco"
-                width={52}
-                height={52}
-                className="rounded-full bg-white p-0.5 shadow-[0_0_14px_rgba(255,107,53,0.3)]"
-                priority
-              />
-              <div>
-                <p className="font-heading text-xl font-extrabold leading-none tracking-tight">
-                  ShopTire <span className="text-[#FF6B35]">Ajusco</span>
-                </p>
-                <p className="text-[11px] text-gray-500 leading-none mt-1 uppercase tracking-widest">Llantas · CDMX</p>
-              </div>
-            </a>
+            <HeaderBrand />
 
             <nav className="flex items-center gap-4">
               <a href="/catalogo" className="text-sm text-gray-400 hover:text-white hidden sm:block transition-colors font-medium">

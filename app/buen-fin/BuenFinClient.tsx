@@ -93,6 +93,18 @@ export default function BuenFinClient({ data, initialSucursal, fase }: Props) {
     };
   }, [seleccion]);
 
+  useEffect(() => {
+    document.documentElement.dataset.buenFinSucursal = sucursal;
+    window.dispatchEvent(new CustomEvent('buenfin-sucursal', { detail: sucursal }));
+  }, [sucursal]);
+
+  useEffect(() => {
+    return () => {
+      delete document.documentElement.dataset.buenFinSucursal;
+      window.dispatchEvent(new CustomEvent('buenfin-sucursal', { detail: 'ajusco' }));
+    };
+  }, []);
+
   const consulta = normalizarBusqueda(busqueda);
 
   const marcas = useMemo(() => {
@@ -228,7 +240,7 @@ export default function BuenFinClient({ data, initialSucursal, fase }: Props) {
   const precioSeleccion = seleccion ? precioSucursal(seleccion, sucursal) : null;
   const leyenda =
     sucursal === 'tlalpan' && antes
-      ? 'Precio de Buen Fin y 15% de regreso a partir del 13 de noviembre'
+      ? 'El 13 cambia a precio Buen Fin + 15% de regreso'
       : LEYENDAS[sucursal];
 
   return (
@@ -271,7 +283,7 @@ export default function BuenFinClient({ data, initialSucursal, fase }: Props) {
           <p className="text-center text-xs text-gray-400 mt-3">📍 {DIRECCIONES[sucursal]}</p>
           {sucursal === 'tlalpan' && antes && (
             <p className="text-center text-xs font-semibold text-[#FFD400] mt-2 max-w-md mx-auto leading-relaxed">
-              Precio de Buen Fin y 15% de regreso a partir del 13 de noviembre
+              El 13 cambia a precio Buen Fin + 15% de regreso
             </p>
           )}
         </div>
@@ -394,7 +406,11 @@ export default function BuenFinClient({ data, initialSucursal, fase }: Props) {
             {filtradas.length === 1 ? 'llanta' : 'llantas'}
           </p>
           <p className="text-[11px] text-gray-600 uppercase tracking-wider">
-            {sucursal === 'ajusco' ? 'Precio Ajusco' : 'Precio Buen Fin · Tlalpan'}
+            {sucursal === 'ajusco'
+              ? 'Precio Ajusco'
+              : antes
+                ? 'Precio hoy · Tlalpan'
+                : 'Precio Buen Fin · Tlalpan'}
           </p>
         </div>
 
@@ -500,7 +516,11 @@ export default function BuenFinClient({ data, initialSucursal, fase }: Props) {
 
                   <div className="mt-auto">
                     <p className="text-[10px] text-[#FFD400]/80 uppercase tracking-[0.2em] mb-1">
-                      {sucursal === 'ajusco' ? 'Precio Ajusco' : 'Precio Buen Fin'}
+                      {sucursal === 'ajusco'
+                        ? 'Precio Ajusco'
+                        : antes
+                          ? 'Precio hoy'
+                          : 'Precio Buen Fin'}
                     </p>
                     <p
                       className={`font-heading text-4xl font-extrabold leading-none ${
@@ -512,7 +532,8 @@ export default function BuenFinClient({ data, initialSucursal, fase }: Props) {
 
                     {sucursal === 'tlalpan' &&
                       precio !== null &&
-                      cashbackTlalpan !== null && (
+                      cashbackTlalpan !== null &&
+                      cashbackTlalpan > 0 && (
                         <p className="text-emerald-400 text-sm font-semibold mt-2">
                           + {formatearRegreso(cashbackTlalpan)} de regreso para tu próxima compra
                         </p>
